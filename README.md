@@ -1,6 +1,20 @@
+<div align="center">
+
+<img src="docs/icon.png" width="120" alt="MD 阅读器图标">
+
 # MD 阅读器
 
-一个简单的本地 Markdown 阅读器，**完全离线**、无需联网、无需安装运行环境。
+一个**完全离线**的本地 Markdown 阅读器 —— 双击 `.md` 文件即可打开。
+
+[English](README.en.md) ·
+![platform](https://img.shields.io/badge/platform-macOS-black) ·
+![license](https://img.shields.io/badge/license-MIT-blue)
+
+<img src="docs/screenshot-light.png" width="49%" alt="浅色"> <img src="docs/screenshot-dark.png" width="49%" alt="深色">
+
+</div>
+
+---
 
 提供两种使用方式：
 
@@ -9,12 +23,21 @@
 
 渲染基于内嵌的 [marked](https://github.com/markedjs/marked) + [highlight.js](https://github.com/highlightjs/highlight.js)，支持 GFM 表格、任务列表、代码高亮，以及 🌓 浅色 / 深色主题切换。
 
+## ✨ 特性
+
+- 双击 `.md` 直接打开（macOS 原生 App）
+- 单文件网页版，可拖拽、可浏览整个文件夹
+- GFM：表格、任务列表、删除线
+- 代码语法高亮（浅 / 深两套主题随页面切换）
+- 🌓 一键明暗主题，记住选择
+- **完全离线**，不联网、不收集任何数据
+
 ---
 
 ## 方式一：macOS App（双击 .md 直接打开）
 
 ### 直接使用
-仓库内已包含构建好的 `MD阅读器.app`：
+仓库内已包含构建好的 `MD阅读器.app`（也可在 [Releases](../../releases) 下载）：
 
 1. 把 `MD阅读器.app` 拖到「应用程序」文件夹（或任意位置）。
 2. 首次打开若提示「无法验证开发者」：右键 App → **打开** → 确认一次即可（自签名应用的正常一次性提示）。
@@ -30,7 +53,7 @@ for ext in md markdown mdown mkd; do duti -s com.local.mdreader .$ext all; done
 ```bash
 ./build.sh
 ```
-脚本会用 `osacompile` 编译 `src/main.applescript`，注入资源、写入 `Info.plist` 文档类型、签名并注册到 Launch Services。
+脚本会用 `osacompile` 编译 `src/main.applescript`，注入资源与图标、写入 `Info.plist` 文档类型、签名并注册到 Launch Services。
 
 **工作原理**：双击 `.md` → Finder 调用 App → App 用内嵌的 `render.py` 把 Markdown 渲染成自包含 HTML → 默认浏览器打开。
 
@@ -58,7 +81,9 @@ for ext in md markdown mdown mkd; do duti -s com.local.mdreader .$ext all; done
 ├── src/
 │   ├── main.applescript # App 的 on open / on run 逻辑
 │   ├── render.py        # Markdown → 自包含 HTML 渲染器
-│   └── lib/             # marked / highlight.js / 样式
+│   ├── icon.icns        # App 图标
+│   └── lib/             # marked / highlight.js / 主题样式
+├── docs/                # 截图与图标
 └── 示例.md              # 测试文档
 ```
 

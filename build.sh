@@ -17,6 +17,9 @@ cp "$SRC/render.py" "$SRC/lib/marked.min.js" "$SRC/lib/hljs.min.js" "$SRC/lib/hl
    "$APP/Contents/Resources/"
 chmod +x "$APP/Contents/Resources/render.py"
 
+echo "==> 应用自定义图标 ..."
+cp "$SRC/icon.icns" "$APP/Contents/Resources/droplet.icns"
+
 echo "==> 写入 Info.plist（注册为 Markdown 文档处理程序）..."
 PLIST="$APP/Contents/Info.plist"
 $PB -c "Set :CFBundleName MD阅读器" "$PLIST"

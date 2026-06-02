@@ -57,8 +57,6 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>dplt</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.13</string>
 	<key>LSMinimumSystemVersionByArchitecture</key>
 	<dict>
 		<key>x86_64</key>

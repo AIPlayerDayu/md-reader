@@ -1,0 +1,43 @@
+name: Build & Release macOS App
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build MD阅读器.app
+        run: |
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Zip app bundle
+        run: |
+          ditto -c -k --sequesterRsrc --keepParent "MD阅读器.app" "MD-Reader-macOS.zip"
+          ls -la MD-Reader-macOS.zip
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MD-Reader-macOS
+          path: MD-Reader-macOS.zip
+
+      - name: Publish Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: MD-Reader-macOS.zip
+          body: |
+            自动构建的 macOS 程序。下载 `MD-Reader-macOS.zip`，解压得到 `MD阅读器.app`。
+
+            首次打开如提示「无法验证开发者」：右键 App → **打开** → 确认一次即可（自签名应用的正常一次性提示）。
