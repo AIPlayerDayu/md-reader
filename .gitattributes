@@ -1,0 +1,5 @@
+# 把第三方库与打包产物从 GitHub 语言统计中排除，让仓库正确显示为 AppleScript / Python
+src/lib/* linguist-vendored
+*.min.js linguist-vendored
+"MD 阅读器.html" linguist-generated
+"MD阅读器.app/**" linguist-generated

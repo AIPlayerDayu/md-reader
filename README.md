@@ -68,6 +68,12 @@ for ext in md markdown mdown mkd; do duti -s com.local.mdreader .$ext all; done
 - `python3`（App 渲染用，macOS 自带或通过 Homebrew 安装）
 - 构建工具 `osacompile`、`PlistBuddy` 均为 macOS 自带
 
+## 隐私与安全
+
+- 完全在本地运行，**不联网、不上传任何数据**，不收集任何信息。
+- 渲染用的 marked / highlight.js 已内嵌，运行时不请求任何远程资源。
+- App 的 `Info.plist` 不申请相机、通讯录、照片等任何系统权限。
+
 ## License
 
 [MIT](LICENSE)

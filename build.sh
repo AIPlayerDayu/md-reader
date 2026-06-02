@@ -36,6 +36,14 @@ $PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes array" "$PLIST"
 $PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes:0 string net.daringfireball.markdown" "$PLIST"
 $PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes:1 string public.plain-text" "$PLIST"
 
+echo "==> 移除 osacompile 默认写入的无用权限描述（本程序并不需要）..."
+for k in NSHomeKitUsageDescription NSAppleMusicUsageDescription NSCalendarsUsageDescription \
+         NSSiriUsageDescription NSCameraUsageDescription NSMicrophoneUsageDescription \
+         NSRemindersUsageDescription NSContactsUsageDescription NSPhotoLibraryUsageDescription \
+         NSSystemAdministrationUsageDescription NSAppleEventsUsageDescription; do
+  $PB -c "Delete :$k" "$PLIST" 2>/dev/null || true
+done
+
 echo "==> 代码签名（ad-hoc）..."
 codesign --force --deep -s - "$APP" || true
 
