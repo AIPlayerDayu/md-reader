@@ -1,0 +1,5 @@
+.DS_Store
+*.swp
+_build/
+/tmp/
+.claude/
